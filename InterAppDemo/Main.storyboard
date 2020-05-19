@@ -76,8 +76,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Client reference ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Nav-iq-Pym">
-                                <rect key="frame" x="16" y="310.33333333333331" width="145" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Client transaction ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Nav-iq-Pym">
+                                <rect key="frame" x="16" y="310.33333333333331" width="157" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -88,7 +88,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="nBk-TT-iRI" id="p0Y-XW-RAR"/>
+                                    <outlet property="delegate" destination="nBk-TT-iRI" id="zKQ-qT-Zhs"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -133,8 +133,8 @@
                     <navigationItem key="navigationItem" title="InterAppDemo" id="cuf-Gc-dnS"/>
                     <connections>
                         <outlet property="amountTextField" destination="z9e-wk-43U" id="eUS-ag-sa1"/>
+                        <outlet property="clientTransactionIdTextField" destination="fa4-pp-bOy" id="HAi-rr-77x"/>
                         <outlet property="installmentsTextField" destination="L6M-nG-UfK" id="3XE-G2-DKs"/>
-                        <outlet property="referenceTextField" destination="fa4-pp-bOy" id="1wF-o6-f2T"/>
                         <outlet property="tipAmountTextField" destination="skW-2l-62O" id="gWl-Xa-ufK"/>
                     </connections>
                 </viewController>
@@ -366,6 +366,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="znt-eh-hpF"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OdN-VV-VkQ">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

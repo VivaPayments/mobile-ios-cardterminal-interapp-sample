@@ -19,7 +19,7 @@ class InterAppSaleViewController: UIViewController {
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var tipAmountTextField: UITextField!
     @IBOutlet weak var installmentsTextField: UITextField!
-    @IBOutlet weak var referenceTextField: UITextField!
+    @IBOutlet weak var clientTransactionIdTextField: UITextField!
     
     var urlStr: String! // base interApp url string
     let schemeURL = "vivapayclient://pay/v1" // The Viva's custom URL scheme, the host and the version.
@@ -47,7 +47,7 @@ class InterAppSaleViewController: UIViewController {
         amountTextField.inputAccessoryView = bar
         tipAmountTextField.inputAccessoryView = bar
         installmentsTextField.inputAccessoryView = bar
-        referenceTextField.inputAccessoryView = bar
+        clientTransactionIdTextField.inputAccessoryView = bar
     }
     
     
@@ -103,7 +103,7 @@ class InterAppSaleViewController: UIViewController {
             preferredInstallments = installments
         }
         
-        let saleActionURL = createSaleRequest(amount: decimalAmount, tipAmount: tipAmount, numberOfInstallments: preferredInstallments, reference: referenceTextField.text)
+        let saleActionURL = createSaleRequest(amount: decimalAmount, tipAmount: tipAmount, numberOfInstallments: preferredInstallments, clientTransactionId: clientTransactionIdTextField.text)
         performInterAppRequest(request: saleActionURL)
     }
     
@@ -112,7 +112,7 @@ class InterAppSaleViewController: UIViewController {
     
     
 //MARK: - MAIN METHODS
-    func createSaleRequest(amount: Decimal, tipAmount: Decimal?, numberOfInstallments: Int?, reference: String?) -> String {
+    func createSaleRequest(amount: Decimal, tipAmount: Decimal?, numberOfInstallments: Int?, clientTransactionId: String?) -> String {
 
         // construct sale action url
         var saleActionURL = schemeURL + callback + merchantKey + clientAppID + saleAction
@@ -123,9 +123,9 @@ class InterAppSaleViewController: UIViewController {
             saleActionURL += "&tipAmount=\(((tip * 100) as NSDecimalNumber).intValue)" // The tip amount in cents without any decimal digits.
         }
 
-        // append reference parameter (if any), same reference field with cancel transaction should be used
-        if let reference = reference, reference != "" {
-            saleActionURL += "&clientTransactionId=\(reference)"
+        // append clientTransactionId parameter (if any)
+        if let transactionId = clientTransactionId, transactionId != "" {
+            saleActionURL += "&clientTransactionId=\(transactionId)"
         }
 
         // append number of installments parameter (if any)
@@ -155,7 +155,7 @@ class InterAppSaleViewController: UIViewController {
 
 //MARK: - SECONDARY METHODS
     @objc func dismissKeyboard(){
-        referenceTextField.resignFirstResponder()
+        clientTransactionIdTextField.resignFirstResponder()
         amountTextField.resignFirstResponder()
         tipAmountTextField.resignFirstResponder()
         installmentsTextField.resignFirstResponder()
