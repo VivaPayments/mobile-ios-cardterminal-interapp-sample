@@ -82,6 +82,9 @@ class InterAppCancelViewController: UIViewController {
             cancelActionURL += "&referenceNumber=\(unwrappedReference)" // transaction reference number
         }
         
+        let showReceipt = UserDefaults.standard.value(forKey: "show_receipt") as? Bool ?? true
+        cancelActionURL += "&show_receipt=\(showReceipt)"
+        
         return cancelActionURL
     }
     

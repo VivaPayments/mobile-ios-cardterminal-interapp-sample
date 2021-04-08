@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        
+        print("Response URL: \(url.absoluteString)")
         guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
             let path = components.path,
             let params = components.queryItems else {

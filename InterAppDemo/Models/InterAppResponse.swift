@@ -36,6 +36,8 @@ class InterAppResponse {
 
     init(stringDictionary: [String: String]) {
         
+        print("Interapp response: \(stringDictionary)")
+        
         self.verificationMethod = stringDictionary["verificationMethod"]
         
         if let tip = stringDictionary["tipAmount"] {

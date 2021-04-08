@@ -27,6 +27,7 @@ class InterAppSaleViewController: UIViewController {
     let merchantKey = "&merchantKey=SG23323424EXS3" // The merchant's key.
     let clientAppID = "&appId=com.vivawallet.InterAppDemo" // The client app id.
     let saleAction =  "&action=sale" // Sale transaction
+    let abortAction =  "&action=abort" // Abort transaction
 
     
     
@@ -107,16 +108,19 @@ class InterAppSaleViewController: UIViewController {
         performInterAppRequest(request: saleActionURL)
     }
     
+    @IBAction func abortButtonTapped(_ sender: Any) {
+        let abortActionURL = createAbortRequest()
+        print(abortActionURL)
+        performInterAppRequest(request: abortActionURL)
+    }
     
+    // MARK: - MAIN METHODS
     
-    
-    
-//MARK: - MAIN METHODS
     func createSaleRequest(amount: Decimal, tipAmount: Decimal?, numberOfInstallments: Int?, clientTransactionId: String?) -> String {
-
+        
         // construct sale action url
         var saleActionURL = schemeURL + callback + merchantKey + clientAppID + saleAction
-
+        
         saleActionURL += "&amount=\(((amount * 100) as NSDecimalNumber).intValue)" // The amount in cents without any decimal digits.
 
         if let tip = tipAmount {
@@ -136,8 +140,19 @@ class InterAppSaleViewController: UIViewController {
         else {
             saleActionURL += "&withInstallments=false" // no installments parameter (should be used)
         }
+        
+        let showReceipt = UserDefaults.standard.value(forKey: "show_receipt") as? Bool ?? true
+        saleActionURL += "&show_receipt=\(showReceipt)"
+
+        let showRating = UserDefaults.standard.value(forKey: "show_rating") as? Bool ?? true
+        saleActionURL += "&show_rating=\(showRating)"
 
         return saleActionURL
+    }
+    
+    func createAbortRequest() -> String {
+        let abortActionURL = schemeURL + callback + merchantKey + clientAppID + abortAction
+        return abortActionURL
     }
 
     

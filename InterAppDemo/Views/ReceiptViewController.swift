@@ -52,9 +52,8 @@ extension ReceiptViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var rows: Int = 4
+        var rows: Int = 5
         rows = (receiptViewModel.installments != nil) ? rows + 1 : rows
-        rows = (receiptViewModel.clientReferenceCode != nil) ? rows + 1 : rows
         return rows
     }
 
@@ -72,7 +71,7 @@ extension ReceiptViewController: UITableViewDataSource, UITableViewDelegate {
         case 3:
             cell.configure(titleText: "Transaction date:", valueText: receiptViewModel.transactionDate)
         case 4:
-            cell.configure(titleText: "Client reference ID:", valueText: receiptViewModel.clientReferenceCode!)
+            cell.configure(titleText: "Client reference ID:", valueText: receiptViewModel.clientReferenceCode)
         case 5:
             cell.configure(titleText: "Number of installments:", valueText: String(receiptViewModel.installments!))
         default:
@@ -97,6 +96,6 @@ class ReceiptTableViewCell: UITableViewCell {
     
     func configure(titleText: String?, valueText: String?) {
         titleLabel?.text = titleText
-        valueLabel?.text = valueText
+        valueLabel?.text = valueText ?? ""
     }
 }

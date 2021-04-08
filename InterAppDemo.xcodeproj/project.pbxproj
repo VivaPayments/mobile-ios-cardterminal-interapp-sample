@@ -14,6 +14,7 @@
 		15A8BC0823A8E76E000B2731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A8BC0723A8E76E000B2731 /* Main.storyboard */; };
 		B112EACD2407C73B0064BFF0 /* InterAppResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B112EACC2407C73B0064BFF0 /* InterAppResponse.swift */; };
 		B112EACF2407D45A0064BFF0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B112EACE2407D45A0064BFF0 /* Extensions.swift */; };
+		B1299E8324DAD7B300432561 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1299E8224DAD7B300432561 /* SettingsViewController.swift */; };
 		B13FD8E123D6F1920046FB52 /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FD8E023D6F1920046FB52 /* ReceiptViewController.swift */; };
 		B1482D87246D64A2003CF76E /* InterAppCancelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1482D86246D64A2003CF76E /* InterAppCancelViewController.swift */; };
 		B1482D89246D67F6003CF76E /* InterAppTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1482D88246D67F6003CF76E /* InterAppTabViewController.swift */; };
@@ -31,6 +32,7 @@
 		15A8BC0723A8E76E000B2731 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B112EACC2407C73B0064BFF0 /* InterAppResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterAppResponse.swift; sourceTree = "<group>"; };
 		B112EACE2407D45A0064BFF0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B1299E8224DAD7B300432561 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B13FD8E023D6F1920046FB52 /* ReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
 		B1482D86246D64A2003CF76E /* InterAppCancelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InterAppCancelViewController.swift; path = InterAppDemo/InterAppCancelViewController.swift; sourceTree = SOURCE_ROOT; };
 		B1482D88246D67F6003CF76E /* InterAppTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterAppTabViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				B1482D86246D64A2003CF76E /* InterAppCancelViewController.swift */,
 				B13FD8E023D6F1920046FB52 /* ReceiptViewController.swift */,
 				B1BE1325240806DC0072ADE7 /* DetailsViewController.swift */,
+				B1299E8224DAD7B300432561 /* SettingsViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				B112EACF2407D45A0064BFF0 /* Extensions.swift in Sources */,
 				B1482D87246D64A2003CF76E /* InterAppCancelViewController.swift in Sources */,
 				15086DCD23B0E85A006E6724 /* InterAppSaleViewController.swift in Sources */,
+				B1299E8324DAD7B300432561 /* SettingsViewController.swift in Sources */,
 				B13FD8E123D6F1920046FB52 /* ReceiptViewController.swift in Sources */,
 				15A8BBF423A8E54A000B2731 /* AppDelegate.swift in Sources */,
 				B1BE1326240806DC0072ADE7 /* DetailsViewController.swift in Sources */,
@@ -341,6 +345,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vivawallet.InterAppDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -361,6 +366,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vivawallet.InterAppDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
