@@ -8,9 +8,7 @@
 
 import Foundation
 
-
 struct ReceiptViewModel {
-    
     let transactionResult: Bool
     let amount: String?
     let cardType: String?

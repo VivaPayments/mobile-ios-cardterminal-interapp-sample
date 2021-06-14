@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        print("Response URL: \(url.absoluteString)")
+        print("Response URL\n:", url)
         guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
             let path = components.path,
             let params = components.queryItems else {
@@ -42,5 +42,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let nc = UINavigationController(rootViewController: receipVC)
         window?.rootViewController?.present(nc, animated: true, completion: nil)
         return true
+    }
+    
+    func performInterAppRequest(request: String){
+        guard let url = URL(string: request) else { return } // url with constructed parameters
+        UIApplication.shared.open(url) { (result) in
+            print("InterApp Request URL:\n", url)
+            if result {
+                // The URL was delivered successfully!
+            }
+        }
     }
 }

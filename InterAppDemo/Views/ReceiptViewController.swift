@@ -10,7 +10,6 @@ import UIKit
 
 class ReceiptViewController: UIViewController {
     
-    
     class func instantiate(response: InterAppResponse, parameters: [URLQueryItem]) -> ReceiptViewController {
         let rvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReceiptViewController") as! ReceiptViewController
         rvc.receiptViewModel = ReceiptViewModel(response: response)
@@ -18,14 +17,12 @@ class ReceiptViewController: UIViewController {
         return rvc
     }
     
-    
     @IBOutlet weak var receiptTableView: UITableView!
     @IBOutlet weak var resultImageView: UIImageView!
     @IBOutlet weak var resultMessageLabel: UILabel!
     
     var receiptViewModel: ReceiptViewModel!
     var parameters: [URLQueryItem] = []
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

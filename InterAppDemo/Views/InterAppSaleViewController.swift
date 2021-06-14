@@ -15,26 +15,13 @@ class InterAppSaleViewController: UIViewController {
         return vc
     }
     
-    
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var tipAmountTextField: UITextField!
     @IBOutlet weak var installmentsTextField: UITextField!
     @IBOutlet weak var clientTransactionIdTextField: UITextField!
     
-    var urlStr: String! // base interApp url string
-    let schemeURL = "vivapayclient://pay/v1" // The Viva's custom URL scheme, the host and the version.
-    let callback = "?callback=interapp-callback" // The URI callback that will handle the result.
-    let merchantKey = "&merchantKey=SG23323424EXS3" // The merchant's key.
-    let clientAppID = "&appId=com.vivawallet.InterAppDemo" // The client app id.
-    let saleAction =  "&action=sale" // Sale transaction
-    let abortAction =  "&action=abort" // Abort transaction
-
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Construct base interApp url string
-        urlStr = schemeURL + callback + merchantKey + clientAppID
         
         let dismissGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(dismissGesture)
@@ -51,14 +38,11 @@ class InterAppSaleViewController: UIViewController {
         clientTransactionIdTextField.inputAccessoryView = bar
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         dismissKeyboard()
     }
     
-    
-    
-//MARK: - ACTION METHODS
+    //MARK: - ACTION METHODS
     /// Sale Transaction Request Action
     /// 1. In order to perform a sale transaction a valid amount must be entered (greater than 0).
     /// 2. Tip amount and Installments are optional.
@@ -77,7 +61,7 @@ class InterAppSaleViewController: UIViewController {
     /// 12. Card Terminal app will proceed with performing the transaction and return the result back to this app (check AppDelegate for handling the transaction result).
     @IBAction func saleButtonTapped(_ sender: UIButton) {
         dismissKeyboard()
-
+        
         var tipAmount: Decimal?
         var preferredInstallments: Int?
         
@@ -92,7 +76,7 @@ class InterAppSaleViewController: UIViewController {
             presentInvalidInputAlert(message: "Can not apply installments with tip")
             return
         }
-
+        
         // get decimal amount from string
         guard let decimalAmount = Decimal(string: amount, locale: Locale.current) else { return }
         // assign tip parameter (if any)
@@ -105,33 +89,26 @@ class InterAppSaleViewController: UIViewController {
         }
         
         let saleActionURL = createSaleRequest(amount: decimalAmount, tipAmount: tipAmount, numberOfInstallments: preferredInstallments, clientTransactionId: clientTransactionIdTextField.text)
-        performInterAppRequest(request: saleActionURL)
+        (UIApplication.shared.delegate as? AppDelegate)?.performInterAppRequest(request: saleActionURL)
     }
     
-    @IBAction func abortButtonTapped(_ sender: Any) {
-        let abortActionURL = createAbortRequest()
-        print(abortActionURL)
-        performInterAppRequest(request: abortActionURL)
-    }
     
     // MARK: - MAIN METHODS
-    
     func createSaleRequest(amount: Decimal, tipAmount: Decimal?, numberOfInstallments: Int?, clientTransactionId: String?) -> String {
-        
         // construct sale action url
-        var saleActionURL = schemeURL + callback + merchantKey + clientAppID + saleAction
+        var saleActionURL = Constants.saleUrlString // vivapayclient://pay/v1?callback=interapp-callback&merchantKey=SG23323424EXS3&appId=com.vivawallet.InterAppDemo&action=sale
         
         saleActionURL += "&amount=\(((amount * 100) as NSDecimalNumber).intValue)" // The amount in cents without any decimal digits.
-
+        
         if let tip = tipAmount {
             saleActionURL += "&tipAmount=\(((tip * 100) as NSDecimalNumber).intValue)" // The tip amount in cents without any decimal digits.
         }
-
+        
         // append clientTransactionId parameter (if any)
         if let transactionId = clientTransactionId, transactionId != "" {
             saleActionURL += "&clientTransactionId=\(transactionId)"
         }
-
+        
         // append number of installments parameter (if any)
         if let preferredInstallments = numberOfInstallments, preferredInstallments > 1 {
             saleActionURL += "&withInstallments=true" // enable installments parameter
@@ -143,39 +120,20 @@ class InterAppSaleViewController: UIViewController {
         
         let showReceipt = UserDefaults.standard.value(forKey: "show_receipt") as? Bool ?? true
         saleActionURL += "&show_receipt=\(showReceipt)"
-
+        
         let showRating = UserDefaults.standard.value(forKey: "show_rating") as? Bool ?? true
         saleActionURL += "&show_rating=\(showRating)"
-
+        
+        let showResult = UserDefaults.standard.value(forKey: "show_transaction_result") as? Bool ?? true
+        saleActionURL += "&show_transaction_result=\(showResult)"
+        
         return saleActionURL
     }
     
-    func createAbortRequest() -> String {
-        let abortActionURL = schemeURL + callback + merchantKey + clientAppID + abortAction
-        return abortActionURL
-    }
-
-    
-        
-    func performInterAppRequest(request: String){
-        guard let url = URL(string: request) else { return } // url with constructed parameters
-        UIApplication.shared.open(url) { (result) in
-            if result {
-                // The URL was delivered successfully!
-            }
-        }
-    }
-    
-    
-
-//MARK: - SECONDARY METHODS
+    //MARK: - SECONDARY METHODS
     @objc func dismissKeyboard(){
-        clientTransactionIdTextField.resignFirstResponder()
-        amountTextField.resignFirstResponder()
-        tipAmountTextField.resignFirstResponder()
-        installmentsTextField.resignFirstResponder()
+        self.view.endEditing(true)
     }
-    
     
     func presentInvalidInputAlert(message: String) {
         let alert = UIAlertController(title: "Invalid Input", message: message, preferredStyle: UIAlertController.Style.alert)
@@ -186,7 +144,6 @@ class InterAppSaleViewController: UIViewController {
 
 
 extension InterAppSaleViewController: UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
     }

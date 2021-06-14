@@ -8,28 +8,62 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var showReceiptSwitch: UISwitch!
-    @IBOutlet weak var showRatingSwitch: UISwitch!
-
+    enum SettingsKeys: String, CaseIterable {
+        case show_receipt
+        case show_rating
+        case show_transaction_result
+        case batchManagement = "Batch Management"
+        case receiptOptions = "Receipt Options"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        showReceiptSwitch.isOn = UserDefaults.standard.value(forKey: "show_receipt") as? Bool ?? true
-        showRatingSwitch.isOn = UserDefaults.standard.value(forKey: "show_rating") as? Bool ?? true
     }
     
-    
-    @IBAction func showReceiptSwitchTapped(_ sender: Any) {
-        UserDefaults.standard.set(showReceiptSwitch.isOn, forKey: "show_receipt")
-        UserDefaults.standard.synchronize()
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return SettingsKeys.allCases.count
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell", for: indexPath) as! SettingsTableViewCell
+        cell.titleLabel.text = SettingsKeys.allCases[indexPath.row].rawValue
+        if SettingsKeys.allCases[indexPath.row] == .show_receipt ||
+            SettingsKeys.allCases[indexPath.row] == .show_rating ||
+            SettingsKeys.allCases[indexPath.row] == .show_transaction_result {
+            cell.settingsSwitch.isOn = UserDefaults.standard.value(forKey: SettingsKeys.allCases[indexPath.row].rawValue) as? Bool ?? true
+        } else {
+            cell.settingsSwitch.isHidden = true
+        }
+        return cell
+    }
 
-    @IBAction func showRatingSwitchTapped(_ sender: Any) {
-        UserDefaults.standard.set(showRatingSwitch.isOn, forKey: "show_rating")
-        UserDefaults.standard.synchronize()
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? SettingsTableViewCell else { return }
+        switch cell.titleLabel.text {
+        case SettingsKeys.batchManagement.rawValue:
+            let batchManagementVC = BatchManagementViewController.instantiate()
+            navigationController?.pushViewController(batchManagementVC, animated: true)
+        case SettingsKeys.receiptOptions.rawValue:
+            let receiptOptionsVC = ReceiptOptionsViewController.instantiate()
+            navigationController?.pushViewController(receiptOptionsVC, animated: true)
+        default:
+            break
+        }
     }
 }
 
+
+class SettingsTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var settingsSwitch: UISwitch!
+
+    @IBAction func switchTapped(_ sender: Any) {
+        if let settingsKey = titleLabel.text {
+            UserDefaults.standard.set(settingsSwitch.isOn, forKey: settingsKey)
+            UserDefaults.standard.synchronize()
+        }
+    }
+}

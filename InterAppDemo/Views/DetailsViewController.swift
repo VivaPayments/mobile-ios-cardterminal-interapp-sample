@@ -14,7 +14,6 @@ class DetailsViewController: UIViewController {
     
     var parameters: [URLQueryItem] = []
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -37,5 +36,10 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
         let blankView = UIView(frame: CGRect.zero)
         blankView.backgroundColor = .systemBackground
         return blankView
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = parameters[indexPath.row].value?.removingPercentEncoding
     }
 }

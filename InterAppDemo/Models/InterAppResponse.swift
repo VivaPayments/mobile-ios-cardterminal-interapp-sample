@@ -12,6 +12,7 @@ enum Action: String {
     case sale = "sale"
     case cancel = "cancel"
     case userCancel = "User_cancel"
+    case batch = "batch"
 }
 
 class InterAppResponse {
@@ -22,6 +23,7 @@ class InterAppResponse {
     var accountNumber: String?
     var amount: Decimal?
     var orderCode: Int?
+    var shortOrderCode: Int?
     var rrn: String?
     var authorisationCode: String?
     var referenceNumber: String?
@@ -33,6 +35,7 @@ class InterAppResponse {
     var tid: Int?
     var status: Bool
     var installments: Int?
+    var command: String?
 
     init(stringDictionary: [String: String]) {
         
@@ -55,6 +58,11 @@ class InterAppResponse {
         if let code = stringDictionary["orderCode"] {
             self.orderCode = Int(code)
         }
+        
+        if let shortOrderCode = stringDictionary["shortOrderCode"] {
+            self.shortOrderCode = Int(shortOrderCode)
+        }
+        
         self.rrn = stringDictionary["rrn"]
         
         self.authorisationCode = stringDictionary["authorisationCode"]
@@ -83,6 +91,10 @@ class InterAppResponse {
         
         if let tid = stringDictionary["tid"] {
             self.tid = Int(tid)
+        }
+        
+        if let command = stringDictionary["command"] {
+            self.command = command
         }
         
         self.status = (stringDictionary["status"] == "success") ? true : false
