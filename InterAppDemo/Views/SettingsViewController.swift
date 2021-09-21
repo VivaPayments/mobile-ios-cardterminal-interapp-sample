@@ -11,11 +11,16 @@ import UIKit
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     enum SettingsKeys: String, CaseIterable {
+        case sendEmptyAppId = "Send Empty App id"
+        case sendEmptyCallback = "Send Empty Callback"
+        case sendEmptyAction = "Send Empty Action"
+        case sendEmptyInstallments = "Send Empty Installments"
         case show_receipt
         case show_rating
         case show_transaction_result
         case batchManagement = "Batch Management"
         case receiptOptions = "Receipt Options"
+        case sendLogs = "Send Logs"
     }
 
     override func viewDidLoad() {
@@ -31,8 +36,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         cell.titleLabel.text = SettingsKeys.allCases[indexPath.row].rawValue
         if SettingsKeys.allCases[indexPath.row] == .show_receipt ||
             SettingsKeys.allCases[indexPath.row] == .show_rating ||
-            SettingsKeys.allCases[indexPath.row] == .show_transaction_result {
-            cell.settingsSwitch.isOn = UserDefaults.standard.value(forKey: SettingsKeys.allCases[indexPath.row].rawValue) as? Bool ?? true
+            SettingsKeys.allCases[indexPath.row] == .show_transaction_result ||
+            SettingsKeys.allCases[indexPath.row] == .sendEmptyAction ||
+            SettingsKeys.allCases[indexPath.row] == .sendEmptyCallback ||
+            SettingsKeys.allCases[indexPath.row] == .sendEmptyAppId ||
+            SettingsKeys.allCases[indexPath.row] == .sendEmptyInstallments {
+            cell.settingsSwitch.isOn = UserDefaults.standard.value(forKey: SettingsKeys.allCases[indexPath.row].rawValue) as? Bool ?? (indexPath.row <= 3 ? false : true)
         } else {
             cell.settingsSwitch.isHidden = true
         }
@@ -48,6 +57,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         case SettingsKeys.receiptOptions.rawValue:
             let receiptOptionsVC = ReceiptOptionsViewController.instantiate()
             navigationController?.pushViewController(receiptOptionsVC, animated: true)
+        case SettingsKeys.sendLogs.rawValue:
+            (UIApplication.shared.delegate as? AppDelegate)?.performInterAppRequest(request: Constants.sendLogsUrlString)
+
         default:
             break
         }

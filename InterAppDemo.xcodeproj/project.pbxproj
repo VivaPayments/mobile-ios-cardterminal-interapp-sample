@@ -13,6 +13,7 @@
 		15A8BBFA23A8E54C000B2731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15A8BBF923A8E54C000B2731 /* Assets.xcassets */; };
 		15A8BC0023A8E54C000B2731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A8BBFE23A8E54C000B2731 /* LaunchScreen.storyboard */; };
 		15A8BC0823A8E76E000B2731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A8BC0723A8E76E000B2731 /* Main.storyboard */; };
+		287252802603610E001B8C0D /* exportOptionsUAT.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2872527F2603610E001B8C0D /* exportOptionsUAT.plist */; };
 		B112EACD2407C73B0064BFF0 /* InterAppResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B112EACC2407C73B0064BFF0 /* InterAppResponse.swift */; };
 		B112EACF2407D45A0064BFF0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B112EACE2407D45A0064BFF0 /* Extensions.swift */; };
 		B1299E8324DAD7B300432561 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1299E8224DAD7B300432561 /* SettingsViewController.swift */; };
@@ -35,6 +36,7 @@
 		15A8BC0123A8E54C000B2731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15A8BC0723A8E76E000B2731 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		185268231DD594C7FDEDBDE6 /* Pods-InterAppDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterAppDemo.release.xcconfig"; path = "Target Support Files/Pods-InterAppDemo/Pods-InterAppDemo.release.xcconfig"; sourceTree = "<group>"; };
+		2872527F2603610E001B8C0D /* exportOptionsUAT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = exportOptionsUAT.plist; sourceTree = SOURCE_ROOT; };
 		4851715C10BA809FF4AAD4B2 /* Pods_InterAppDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InterAppDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97608C0AFF835EB10FE8DB5B /* Pods-InterAppDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterAppDemo.debug.xcconfig"; path = "Target Support Files/Pods-InterAppDemo/Pods-InterAppDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		B112EACC2407C73B0064BFF0 /* InterAppResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterAppResponse.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 		15A8BBE723A8E54A000B2731 = {
 			isa = PBXGroup;
 			children = (
+				2872527F2603610E001B8C0D /* exportOptionsUAT.plist */,
 				15A8BBF223A8E54A000B2731 /* InterAppDemo */,
 				15A8BBF123A8E54A000B2731 /* Products */,
 				23EC61D4BBAEE0F9B536E664 /* Pods */,
@@ -220,6 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				287252802603610E001B8C0D /* exportOptionsUAT.plist in Resources */,
 				15A8BC0023A8E54C000B2731 /* LaunchScreen.storyboard in Resources */,
 				15A8BBFA23A8E54C000B2731 /* Assets.xcassets in Resources */,
 				15A8BC0823A8E76E000B2731 /* Main.storyboard in Resources */,
@@ -341,7 +345,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				MARKETING_VERSION = 1.9.0;
+				MARKETING_VERSION = 1.10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -398,7 +402,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				MARKETING_VERSION = 1.9.0;
+				MARKETING_VERSION = 1.10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

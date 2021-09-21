@@ -9,44 +9,81 @@
 import Foundation
 
 struct Constants {
-    
+
     private static let schemeURL = "vivapayclient://pay/v1" // The Viva's custom URL scheme, the host and the version.
     private static let callback = "?callback=interapp-callback" // The URI callback that will handle the result.
     private static let merchantKey = "&merchantKey=SG23323424EXS3" // The merchant's key.
     private static let clientAppID = "&appId=com.vivawallet.InterAppDemo" // The client app id.
-    private static let saleAction =  "&action=sale" // Sale transaction
+    private static let saleAction = "&action=sale" // Sale transaction
     private static let cancelAction = "&action=cancel" // Cancel/Refund transaction
     private static let abortAction =  "&action=abort" // Abort transaction
     private static let batchAction =  "&action=batch" // Create batch
     private static let printerSettingsAction =  "&action=set_printing_settings" // Set printer settings
-    
+    private static let sendLogsAction = "&action=sendLogs"
     // Construct base interApp url string
     static private var baseUrlString: String {
-        return schemeURL + callback + merchantKey + clientAppID
+        var url = schemeURL
+        if UserDefaults.standard.value(forKey:
+                SettingsViewController.SettingsKeys.sendEmptyCallback.rawValue)
+            as? Bool != true {
+            url += callback
+        }
+        url += merchantKey
+        if UserDefaults.standard.value(forKey:
+                SettingsViewController.SettingsKeys.sendEmptyAppId.rawValue)
+            as? Bool != true {
+            url += clientAppID
+        }
+        return url
     }
-    
+
     // Construct sale interApp url string
     static var saleUrlString: String {
-        return baseUrlString + saleAction
+        return UserDefaults.standard.value(forKey:
+                SettingsViewController.SettingsKeys.sendEmptyAction.rawValue)
+        as? Bool != true ?
+        baseUrlString + saleAction:
+            baseUrlString
+
     }
 
     // Construct cancel interApp url string
     static var cancelUrlString: String {
-        return baseUrlString + cancelAction
+        return UserDefaults.standard.value(forKey:
+                SettingsViewController.SettingsKeys.sendEmptyAction.rawValue)
+        as? Bool != true ?
+        baseUrlString + cancelAction:
+            baseUrlString
     }
-    
+
     // Construct abort interApp url string
     static var abortUrlString: String {
-        return baseUrlString + abortAction
+        return UserDefaults.standard.value(forKey:
+                SettingsViewController.SettingsKeys.sendEmptyAction.rawValue)
+        as? Bool != true ?
+        baseUrlString + abortAction:
+            baseUrlString
     }
 
     // Open/Close batch interApp url string
     static var batchUrlString: String {
-        return baseUrlString + batchAction
+        return UserDefaults.standard.value(forKey:
+                SettingsViewController.SettingsKeys.sendEmptyAction.rawValue)
+        as? Bool != true ?
+        baseUrlString + batchAction:
+            baseUrlString
     }
 
     // Construct end batch interApp url string
     static var printerSettingsUrlString: String {
-        return baseUrlString + printerSettingsAction
+        return UserDefaults.standard.value(forKey:
+                SettingsViewController.SettingsKeys.sendEmptyAction.rawValue)
+        as? Bool != true ?
+        baseUrlString + printerSettingsAction:
+            baseUrlString
+    }
+    
+    static var sendLogsUrlString: String {
+        return baseUrlString + sendLogsAction
     }
 }

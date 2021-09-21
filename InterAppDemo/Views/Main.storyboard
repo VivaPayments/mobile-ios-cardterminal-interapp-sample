@@ -30,7 +30,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ddK-De-EeK">
-                                <rect key="frame" x="16" y="157.66666666666666" width="382" height="183.99999999999997"/>
+                                <rect key="frame" x="16" y="157.66666666666663" width="382" height="384"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="77" translatesAutoresizingMaskIntoConstraints="NO" id="4hO-My-61g">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="34"/>
@@ -46,6 +46,9 @@
                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="nBk-TT-iRI" id="ejE-Xw-sRO"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -66,6 +69,9 @@
                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="nBk-TT-iRI" id="Vnm-zc-21F"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -86,6 +92,9 @@
                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="nBk-TT-iRI" id="a5B-5A-HNr"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -113,6 +122,98 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="fa4-pp-bOy" firstAttribute="width" secondItem="4Av-QM-aim" secondAttribute="width" multiplier="0.5" constant="-4" id="tvj-BH-Lpz"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="85" translatesAutoresizingMaskIntoConstraints="NO" id="UKf-B3-GTM">
+                                        <rect key="frame" x="0.0" y="200.00000000000003" width="382" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ISV amount:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1M7-Hk-nCG">
+                                                <rect key="frame" x="0.0" y="0.0" width="110" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Aoz-S3-IeP">
+                                                <rect key="frame" x="195" y="0.0" width="187" height="34"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="nBk-TT-iRI" id="ZNs-hL-B1l"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Aoz-S3-IeP" firstAttribute="width" secondItem="UKf-B3-GTM" secondAttribute="width" multiplier="0.5" constant="-4" id="zl3-4H-b5D"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="zBb-2g-JtU">
+                                        <rect key="frame" x="0.0" y="250" width="382" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ISV client ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Pdq-uw-dbQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="176" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="e2u-ff-XsI">
+                                                <rect key="frame" x="195" y="0.0" width="187" height="34"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="nBk-TT-iRI" id="g5s-8E-7f9"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="e2u-ff-XsI" firstAttribute="width" secondItem="zBb-2g-JtU" secondAttribute="width" multiplier="0.5" constant="-4" id="Hrj-tQ-oW6"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="uVt-cd-s8W">
+                                        <rect key="frame" x="0.0" y="300" width="382" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ISV client secret:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xyc-8a-ey2">
+                                                <rect key="frame" x="0.0" y="0.0" width="176" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="yjY-Bm-gUZ">
+                                                <rect key="frame" x="195" y="0.0" width="187" height="34"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="nBk-TT-iRI" id="xzF-lj-gWR"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="yjY-Bm-gUZ" firstAttribute="width" secondItem="uVt-cd-s8W" secondAttribute="width" multiplier="0.5" constant="-4" id="JuE-yC-0fX"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="r0R-pF-Dix">
+                                        <rect key="frame" x="0.0" y="350" width="382" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ISV source code:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gEL-tM-IfR">
+                                                <rect key="frame" x="0.0" y="0.0" width="176" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Xfv-Kr-ajm">
+                                                <rect key="frame" x="195" y="0.0" width="187" height="34"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="nBk-TT-iRI" id="fea-Cc-hP5"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Xfv-Kr-ajm" firstAttribute="width" secondItem="r0R-pF-Dix" secondAttribute="width" multiplier="0.5" constant="-4" id="Gqh-wn-lyX"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -154,6 +255,10 @@
                         <outlet property="amountTextField" destination="z9e-wk-43U" id="eUS-ag-sa1"/>
                         <outlet property="clientTransactionIdTextField" destination="fa4-pp-bOy" id="HAi-rr-77x"/>
                         <outlet property="installmentsTextField" destination="L6M-nG-UfK" id="3XE-G2-DKs"/>
+                        <outlet property="isvAmountTextField" destination="Aoz-S3-IeP" id="spB-so-YTC"/>
+                        <outlet property="isvClientIdTextField" destination="e2u-ff-XsI" id="bNW-q7-vFU"/>
+                        <outlet property="isvClientSecretTextField" destination="yjY-Bm-gUZ" id="Q0d-Py-4Ho"/>
+                        <outlet property="isvSourceCodeTextField" destination="Xfv-Kr-ajm" id="bcU-Qa-pU9"/>
                         <outlet property="tipAmountTextField" destination="skW-2l-62O" id="gWl-Xa-ufK"/>
                     </connections>
                 </viewController>

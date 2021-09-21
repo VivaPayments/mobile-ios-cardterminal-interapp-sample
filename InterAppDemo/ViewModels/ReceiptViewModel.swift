@@ -20,7 +20,12 @@ struct ReceiptViewModel {
 
     init(response: InterAppResponse) {
         transactionResult = response.status
-        amount = response.amount?.toCurrencyString()
+        if let amount = response.amount {
+            self.amount = "\(amount)"
+        } else {
+            amount = nil
+        }
+       
         cardType = response.cardType
         transactionType = response.action?.rawValue.capitalized
         transactionDate = response.transactionDate.toString(withFormat: "yyyy-MM-dd")

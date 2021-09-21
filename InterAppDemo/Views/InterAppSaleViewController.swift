@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias ISVDetails = (clientId: String?, amount: Decimal?, clientSecret: String?, sourceCode: String?)
+
 class InterAppSaleViewController: UIViewController {
     
     class func instantiate() -> InterAppSaleViewController {
@@ -17,8 +19,13 @@ class InterAppSaleViewController: UIViewController {
     
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var tipAmountTextField: UITextField!
+    @IBOutlet weak var isvAmountTextField: UITextField!
     @IBOutlet weak var installmentsTextField: UITextField!
     @IBOutlet weak var clientTransactionIdTextField: UITextField!
+    @IBOutlet weak var isvClientIdTextField: UITextField!
+    @IBOutlet weak var isvClientSecretTextField: UITextField!
+    @IBOutlet weak var isvSourceCodeTextField: UITextField!
+    private(set) var keyboardHeight: CGFloat = 315
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +43,13 @@ class InterAppSaleViewController: UIViewController {
         tipAmountTextField.inputAccessoryView = bar
         installmentsTextField.inputAccessoryView = bar
         clientTransactionIdTextField.inputAccessoryView = bar
+        isvAmountTextField.inputAccessoryView = bar
+        isvClientIdTextField.inputAccessoryView = bar
+        isvClientSecretTextField.inputAccessoryView = bar
+        isvSourceCodeTextField.inputAccessoryView = bar
+        isvClientIdTextField.text = "auyf99x03sachvn3f5ogldykz8214c2o4vl8cvvs97p19.apps.vivapayments.com"
+        isvClientSecretTextField.text = "43ddf004fdf740c0a5b13477dff50991"
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,32 +57,17 @@ class InterAppSaleViewController: UIViewController {
     }
     
     //MARK: - ACTION METHODS
-    /// Sale Transaction Request Action
-    /// 1. In order to perform a sale transaction a valid amount must be entered (greater than 0).
-    /// 2. Tip amount and Installments are optional.
-    /// 3. Tip amount with installments is not a valid payment and merchant should only proceed with choosing one of two.
-    /// 4. Installments entry will act as preferred number of installments (check steps 7 and 8 for detailed information).
-    ///
-    /// 5. Client should present his card to the reader.
-    /// 6. After a succesful read, the client will be prompt to enter his PIN if he chooses to insert the card to the reader and/or if the transaction amount is above the floor limit defined by the economic space in which the card was issued.
-    ///
-    /// Depending if client has provided a number of installments or not step 7 or 8 will follow.
-    /// 7. If installments are not provided as a parameter by this app, then step 12 takes place.
-    /// 8. If a preferred number of installments is provided, the Card Terminal app will first check if the card presented by the client supports a purchase with installments or not (step 9 or 12)
-    /// 9. If the client's card supports installments then the following will take place: Each card supports a maximum number of installments. If the preferred number of installments entered in this app is below this limit then step 12 takes place. Otherwise step 10 takes place.
-    /// 10. The Card Terminal app will prompt the user with choosing a valid installments number within the range displayed in the screen. After entering a valid number step 12 takes place. Otherwise step 11 takes place.
-    /// 11. The Card Terminal app will prompt the merchant to a screen where he and the client should choose if they should proceed this transaction without the use of installments or if they should abort this transaction.
-    /// 12. Card Terminal app will proceed with performing the transaction and return the result back to this app (check AppDelegate for handling the transaction result).
     @IBAction func saleButtonTapped(_ sender: UIButton) {
         dismissKeyboard()
         
         var tipAmount: Decimal?
-        var preferredInstallments: Int?
+        var isvDetails: ISVDetails = (clientId: nil, amount: nil, clientSecret: nil, sourceCode: nil)
+        var preferredInstallments: String?
         
         // Check If Valid Sale Entry
         // sale amount check
         guard let amount = amountTextField.text, Int(amount) != 0, amount != "" else {
-            presentInvalidInputAlert(message: "Please enter a valid amount")
+            presentInvalidInputAlert(message: "Please enter a valid sale amount")
             return
         }
         // tip Or installments check
@@ -83,18 +82,38 @@ class InterAppSaleViewController: UIViewController {
         if let tipEntry = tipAmountTextField.text, let decimalTip = Decimal(string: tipEntry, locale: Locale.current)   {
             tipAmount = decimalTip
         }
+
         // append number of installments parameter (if any)
-        if let installmentsEntry = installmentsTextField.text, let installments: Int = Int(installmentsEntry), installments > 1 {
-            preferredInstallments = installments
+        if let installmentsEntry = installmentsTextField.text {
+            preferredInstallments = installmentsEntry
         }
-        
-        let saleActionURL = createSaleRequest(amount: decimalAmount, tipAmount: tipAmount, numberOfInstallments: preferredInstallments, clientTransactionId: clientTransactionIdTextField.text)
+
+        if let isvAmount = isvAmountTextField.text,
+           let isvAmountDecimal = Decimal(string: isvAmount, locale: Locale.current) {
+            isvDetails.amount = isvAmountDecimal
+        }
+        if let isvClientId = isvClientIdTextField.text, isvClientId != ""   {
+            isvDetails.clientId = isvClientId
+        }
+        if let isvClientSecret = isvClientSecretTextField.text, isvClientSecret != ""   {
+            isvDetails.clientSecret = isvClientSecret
+        }
+        if let sourceCode = isvSourceCodeTextField.text, sourceCode != ""   {
+            isvDetails.sourceCode = sourceCode
+        }
+
+        if isvClientIdTextField.text?.isEmpty == false ||
+            isvAmountTextField.text?.isEmpty == false ||
+            isvClientSecretTextField.text?.isEmpty == false  {
+        }
+
+        let saleActionURL = createSaleRequest(amount: decimalAmount, tipAmount: tipAmount, isvDetails: isvDetails, numberOfInstallments: preferredInstallments, clientTransactionId: clientTransactionIdTextField.text)
         (UIApplication.shared.delegate as? AppDelegate)?.performInterAppRequest(request: saleActionURL)
     }
     
     
     // MARK: - MAIN METHODS
-    func createSaleRequest(amount: Decimal, tipAmount: Decimal?, numberOfInstallments: Int?, clientTransactionId: String?) -> String {
+    func createSaleRequest(amount: Decimal, tipAmount: Decimal?, isvDetails: ISVDetails?, numberOfInstallments: String?, clientTransactionId: String?) -> String {
         // construct sale action url
         var saleActionURL = Constants.saleUrlString // vivapayclient://pay/v1?callback=interapp-callback&merchantKey=SG23323424EXS3&appId=com.vivawallet.InterAppDemo&action=sale
         
@@ -108,14 +127,30 @@ class InterAppSaleViewController: UIViewController {
         if let transactionId = clientTransactionId, transactionId != "" {
             saleActionURL += "&clientTransactionId=\(transactionId)"
         }
-        
+
         // append number of installments parameter (if any)
-        if let preferredInstallments = numberOfInstallments, preferredInstallments > 1 {
+        if let preferredInstallments = numberOfInstallments, numberOfInstallments?.isEmpty == false {
             saleActionURL += "&withInstallments=true" // enable installments parameter
             saleActionURL += "&preferredInstallments=\(preferredInstallments)"
+        } else if UserDefaults.standard.value(forKey:
+                SettingsViewController.SettingsKeys.sendEmptyInstallments.rawValue)  as? Bool == true {
+            saleActionURL += "&withInstallments=true"
         }
         else {
             saleActionURL += "&withInstallments=false" // no installments parameter (should be used)
+        }
+        
+        if let clientId = isvDetails?.clientId {
+            saleActionURL += "&ISV_clientId=\(clientId)"
+        }
+        if let clientSecret = isvDetails?.clientSecret {
+            saleActionURL += "&ISV_clientSecret=\(clientSecret)"
+        }
+        if let amount = isvDetails?.amount {
+            saleActionURL += "&ISV_amount=\(((amount * 100) as NSDecimalNumber).intValue)" // The ISV amount in cents without any decimal digits.
+        }
+        if let sourceCode = isvDetails?.sourceCode {
+            saleActionURL += "&ISV_sourceCode=\(sourceCode)"
         }
         
         let showReceipt = UserDefaults.standard.value(forKey: "show_receipt") as? Bool ?? true
@@ -140,12 +175,36 @@ class InterAppSaleViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            keyboardHeight = keyboardFrame.cgRectValue.height
+        }
+    }
 }
 
 
 extension InterAppSaleViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            let diff = UIScreen.main.bounds.height - self.keyboardHeight
+            let globalPoint = textField.superview?.convert(textField.frame.origin, to: nil)
+            if diff < (globalPoint?.y  ?? 0) {
+                UIView.animate(withDuration: 0.2) { [weak self] in
+                    self?.view.transform = CGAffineTransform(translationX: 0, y: diff - (globalPoint?.y ?? 0) - textField.frame.height)
+                }
+            }
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.view.transform = CGAffineTransform(translationX: 0, y: 0)
+        }
     }
 }
 

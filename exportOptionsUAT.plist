@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>teamID</key>
+	<string>B9HV73F425</string>
+	<key>method</key>
+	<string>development</string>
+	<key>destination</key>
+	<string>export</string>
+	<key>uploadSymbols</key>
+	<true/>
+	<key>manifest</key>
+	<dict>
+		<key>appURL</key>
+		<string>https://preview-mobile.viva.gr/cibuilds/ios/spoc/sample/#name#.ipa</string>
+		<key>displayImageURL</key>
+		<string>https://preview-mobile.viva.gr/cibuilds/ios/spoc/sample/icon@3x.png</string>
+		<key>fullSizeImageURL</key>
+		<string>https://preview-mobile.viva.gr/cibuilds/ios/spoc/sample/icon@3x.png</string>
+	</dict>
+</dict>
+</plist>
