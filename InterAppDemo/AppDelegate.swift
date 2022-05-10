@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         print("Path: \(path)\nComponents: \(params)")
         
+        
         //MARK: - Do any additional actions after parsing the data
         guard let stringDictionary = url.toStringDictionary() else { return true }
         let response: InterAppResponse = InterAppResponse(stringDictionary: stringDictionary)

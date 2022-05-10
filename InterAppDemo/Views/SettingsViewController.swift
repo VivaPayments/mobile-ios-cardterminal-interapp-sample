@@ -21,6 +21,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         case batchManagement = "Batch Management"
         case receiptOptions = "Receipt Options"
         case sendLogs = "Send Logs"
+        
+
     }
 
     override func viewDidLoad() {

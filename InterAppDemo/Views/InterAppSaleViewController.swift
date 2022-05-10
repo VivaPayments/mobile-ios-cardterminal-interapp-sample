@@ -48,7 +48,7 @@ class InterAppSaleViewController: UIViewController {
         isvClientSecretTextField.inputAccessoryView = bar
         isvSourceCodeTextField.inputAccessoryView = bar
         isvClientIdTextField.text = "auyf99x03sachvn3f5ogldykz8214c2o4vl8cvvs97p19.apps.vivapayments.com"
-        isvClientSecretTextField.text = "43ddf004fdf740c0a5b13477dff50991"
+        isvClientSecretTextField.text = "Vk8ZcKr5Lyep4J0yBDby65Z3zpGjHL"
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     

@@ -13,6 +13,14 @@
 		15A8BBFA23A8E54C000B2731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15A8BBF923A8E54C000B2731 /* Assets.xcassets */; };
 		15A8BC0023A8E54C000B2731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A8BBFE23A8E54C000B2731 /* LaunchScreen.storyboard */; };
 		15A8BC0823A8E76E000B2731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A8BC0723A8E76E000B2731 /* Main.storyboard */; };
+		234449A527DBA7DC00660FA4 /* ActivationPOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234449A427DBA7DC00660FA4 /* ActivationPOSViewController.swift */; };
+		234449A827DBA8AF00660FA4 /* ActivationPOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234449A727DBA8AF00660FA4 /* ActivationPOSView.swift */; };
+		234449AA27DBA96300660FA4 /* VCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234449A927DBA96300660FA4 /* VCExtension.swift */; };
+		236D975627DF9D050023C83F /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236D975527DF9D050023C83F /* ViewExtension.swift */; };
+		236D975827DF9D2A0023C83F /* ActivationPOSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236D975727DF9D2A0023C83F /* ActivationPOSViewModel.swift */; };
+		23F125C127F73B560094876E /* CustomRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F125C027F73B560094876E /* CustomRequestViewController.swift */; };
+		23F125C427F73BBE0094876E /* CustomRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F125C327F73BBE0094876E /* CustomRequestView.swift */; };
+		23F125C627F73E680094876E /* CustomRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F125C527F73E670094876E /* CustomRequestViewModel.swift */; };
 		287252802603610E001B8C0D /* exportOptionsUAT.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2872527F2603610E001B8C0D /* exportOptionsUAT.plist */; };
 		B112EACD2407C73B0064BFF0 /* InterAppResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B112EACC2407C73B0064BFF0 /* InterAppResponse.swift */; };
 		B112EACF2407D45A0064BFF0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B112EACE2407D45A0064BFF0 /* Extensions.swift */; };
@@ -36,6 +44,14 @@
 		15A8BC0123A8E54C000B2731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15A8BC0723A8E76E000B2731 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		185268231DD594C7FDEDBDE6 /* Pods-InterAppDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterAppDemo.release.xcconfig"; path = "Target Support Files/Pods-InterAppDemo/Pods-InterAppDemo.release.xcconfig"; sourceTree = "<group>"; };
+		234449A427DBA7DC00660FA4 /* ActivationPOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationPOSViewController.swift; sourceTree = "<group>"; };
+		234449A727DBA8AF00660FA4 /* ActivationPOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationPOSView.swift; sourceTree = "<group>"; };
+		234449A927DBA96300660FA4 /* VCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCExtension.swift; sourceTree = "<group>"; };
+		236D975527DF9D050023C83F /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		236D975727DF9D2A0023C83F /* ActivationPOSViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationPOSViewModel.swift; sourceTree = "<group>"; };
+		23F125C027F73B560094876E /* CustomRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRequestViewController.swift; sourceTree = "<group>"; };
+		23F125C327F73BBE0094876E /* CustomRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRequestView.swift; sourceTree = "<group>"; };
+		23F125C527F73E670094876E /* CustomRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRequestViewModel.swift; sourceTree = "<group>"; };
 		2872527F2603610E001B8C0D /* exportOptionsUAT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = exportOptionsUAT.plist; sourceTree = SOURCE_ROOT; };
 		4851715C10BA809FF4AAD4B2 /* Pods_InterAppDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InterAppDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97608C0AFF835EB10FE8DB5B /* Pods-InterAppDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterAppDemo.debug.xcconfig"; path = "Target Support Files/Pods-InterAppDemo/Pods-InterAppDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -86,6 +102,8 @@
 		15A8BBF223A8E54A000B2731 /* InterAppDemo */ = {
 			isa = PBXGroup;
 			children = (
+				234449A927DBA96300660FA4 /* VCExtension.swift */,
+				236D975527DF9D050023C83F /* ViewExtension.swift */,
 				B17C9A9F25ED2C39007BB13F /* Constants */,
 				15A8BBF323A8E54A000B2731 /* AppDelegate.swift */,
 				15A8BBF923A8E54C000B2731 /* Assets.xcassets */,
@@ -107,6 +125,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		234449A627DBA89400660FA4 /* Activation POS */ = {
+			isa = PBXGroup;
+			children = (
+				234449A427DBA7DC00660FA4 /* ActivationPOSViewController.swift */,
+				234449A727DBA8AF00660FA4 /* ActivationPOSView.swift */,
+				236D975727DF9D2A0023C83F /* ActivationPOSViewModel.swift */,
+			);
+			path = "Activation POS";
+			sourceTree = "<group>";
+		};
 		23EC61D4BBAEE0F9B536E664 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +142,16 @@
 				185268231DD594C7FDEDBDE6 /* Pods-InterAppDemo.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		23F125C227F73B950094876E /* CustomRequest */ = {
+			isa = PBXGroup;
+			children = (
+				23F125C027F73B560094876E /* CustomRequestViewController.swift */,
+				23F125C327F73BBE0094876E /* CustomRequestView.swift */,
+				23F125C527F73E670094876E /* CustomRequestViewModel.swift */,
+			);
+			path = CustomRequest;
 			sourceTree = "<group>";
 		};
 		B17C9A9F25ED2C39007BB13F /* Constants */ = {
@@ -151,6 +189,8 @@
 		B1BE132A24080FA30072ADE7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				23F125C227F73B950094876E /* CustomRequest */,
+				234449A627DBA89400660FA4 /* Activation POS */,
 				15A8BC0723A8E76E000B2731 /* Main.storyboard */,
 				B1482D88246D67F6003CF76E /* InterAppTabViewController.swift */,
 				15086DCC23B0E85A006E6724 /* InterAppSaleViewController.swift */,
@@ -262,17 +302,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23F125C127F73B560094876E /* CustomRequestViewController.swift in Sources */,
+				23F125C627F73E680094876E /* CustomRequestViewModel.swift in Sources */,
 				B112EACF2407D45A0064BFF0 /* Extensions.swift in Sources */,
 				B1482D87246D64A2003CF76E /* InterAppCancelViewController.swift in Sources */,
 				15086DCD23B0E85A006E6724 /* InterAppSaleViewController.swift in Sources */,
 				B1299E8324DAD7B300432561 /* SettingsViewController.swift in Sources */,
 				B13FD8E123D6F1920046FB52 /* ReceiptViewController.swift in Sources */,
+				234449AA27DBA96300660FA4 /* VCExtension.swift in Sources */,
 				15A8BBF423A8E54A000B2731 /* AppDelegate.swift in Sources */,
+				236D975827DF9D2A0023C83F /* ActivationPOSViewModel.swift in Sources */,
 				B1BE1326240806DC0072ADE7 /* DetailsViewController.swift in Sources */,
 				B17C9A9D25ED2957007BB13F /* BatchManagementViewController.swift in Sources */,
+				234449A827DBA8AF00660FA4 /* ActivationPOSView.swift in Sources */,
 				B1482D89246D67F6003CF76E /* InterAppTabViewController.swift in Sources */,
+				23F125C427F73BBE0094876E /* CustomRequestView.swift in Sources */,
 				B112EACD2407C73B0064BFF0 /* InterAppResponse.swift in Sources */,
+				234449A527DBA7DC00660FA4 /* ActivationPOSViewController.swift in Sources */,
 				B1CE04C02600D88100D3CB6C /* ReceiptOptionsViewController.swift in Sources */,
+				236D975627DF9D050023C83F /* ViewExtension.swift in Sources */,
 				B1BE13242407ED950072ADE7 /* ReceiptViewModel.swift in Sources */,
 				B17C9AA125ED2C49007BB13F /* Constants.swift in Sources */,
 			);
@@ -419,14 +467,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 110;
 				DEVELOPMENT_TEAM = B9HV73F425;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = InterAppDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vivawallet.InterAppDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -442,14 +492,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 110;
 				DEVELOPMENT_TEAM = B9HV73F425;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = InterAppDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vivawallet.InterAppDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

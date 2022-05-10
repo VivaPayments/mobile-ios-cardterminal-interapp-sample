@@ -25,16 +25,41 @@ class BatchManagementViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        addDoneButtonOnKeyboard()
+
     }
     
     @IBAction func createBatchButtonTapped(_ sender: Any) {
         // construct new batch url
         var createBatchActionURL = Constants.batchUrlString
-        guard let batchName = batchNameTextfield.text, batchName.isValidName else {return}
-        createBatchActionURL += "&batchName=" + batchName // newly created batch name
+        if let batchName = batchNameTextfield.text,
+           !batchName.isEmpty {
+            createBatchActionURL += "&batchName=" + batchName// newly created batch name
+        }
         createBatchActionURL += "&command=" + Command.open.rawValue
         (UIApplication.shared.delegate as? AppDelegate)?.performInterAppRequest(request: createBatchActionURL)
+
     }
+    
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+
+        let items = [flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+
+        batchNameTextfield.inputAccessoryView = doneToolbar
+        batchUUIDTextfield.inputAccessoryView = doneToolbar
+    }
+
+        @objc func doneButtonAction(){
+            batchNameTextfield.resignFirstResponder()
+            batchUUIDTextfield.resignFirstResponder()
+        }
     
     @IBAction func endbatchButtonTapped(_ sender: Any) {
         // construct batch url
