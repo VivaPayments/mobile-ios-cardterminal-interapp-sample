@@ -19,6 +19,7 @@ class ReceiptOptionsViewController: UIViewController {
         case printAddressOnReceipt
         case isMerchantReceiptEnabled
         case isCustomerReceiptEnabled
+        case isPrintingReceiptEnabled
     }
     
     enum BusinessDescriptionType: String {
@@ -45,7 +46,7 @@ class ReceiptOptionsViewController: UIViewController {
     }
     
     @IBAction func applySettingsButtonTapped(_ sender: Any) {
-        var printerSettingsURL = Constants.printerSettingsUrlString
+        var printerSettingsURL = Constants.setPrintingSettingsUrlString
         printerSettingsDictionary.forEach { (setting) in
             printerSettingsURL += "&" +  setting.key + "=" + setting.value
         }
@@ -57,7 +58,7 @@ class ReceiptOptionsViewController: UIViewController {
 extension ReceiptOptionsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 11
+        return 12
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,6 +88,8 @@ extension ReceiptOptionsViewController: UITableViewDelegate, UITableViewDataSour
             cell.textLabel?.text = PrinterSettingsKeys.isMerchantReceiptEnabled.rawValue
         case 10:
             cell.textLabel?.text = PrinterSettingsKeys.isCustomerReceiptEnabled.rawValue
+        case 11:
+            cell.textLabel?.text = PrinterSettingsKeys.isPrintingReceiptEnabled.rawValue
         default:
             break
         }

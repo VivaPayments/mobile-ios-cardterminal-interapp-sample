@@ -20,6 +20,9 @@ class ActivationPOSViewModel: ObservableObject {
     @Published var sendEmptyPinCode = false
     @Published var sendWithoutApiKey = false
     @Published var sendWithoutApiSecret = false
+    @Published var selectedMotoPickerValue = "-"
+    @Published var selectedQRCodesPickerValue = "-"
+    var optionsForPicker = ["-", "true", "false"]
     var currentRequest: String {
 
         // construct cancel action url
@@ -36,10 +39,19 @@ class ActivationPOSViewModel: ObservableObject {
         if pinCode.isEmpty == false || sendEmptyPinCode {
             activateActionURL += "&pinCode=\(pinCode)"
         }
+        if selectedMotoPickerValue != "-" {
+            activateActionURL += "&activateMoto=\(selectedMotoPickerValue)"
+        }
+
+        if selectedQRCodesPickerValue != "-" {
+            activateActionURL +=
+                "&activateQRCodes=\(selectedQRCodesPickerValue)"
+        }
 
         return activateActionURL
 
     }
+
 
     func activate() {
         (UIApplication.shared.delegate as? AppDelegate)?.performInterAppRequest(
@@ -47,5 +59,3 @@ class ActivationPOSViewModel: ObservableObject {
     }
 
 }
-
-

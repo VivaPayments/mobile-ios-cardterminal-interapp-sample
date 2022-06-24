@@ -19,8 +19,10 @@ struct Constants {
     private static let cancelAction = "&action=cancel" // Cancel/Refund transaction
     private static let abortAction =  "&action=abort" // Abort transaction
     private static let batchAction =  "&action=batch" // Create batch
-    private static let printerSettingsAction =  "&action=set_printing_settings" // Set printer settings
+    private static let setPrintingSettingsAction =  "&action=set_printing_settings" // Set printing settings
+    private static let getPrintingSettingsAction =  "&action=getPrintingSettings" // Get printing settings
     private static let sendLogsAction = "&action=sendLogs"
+    
     // Construct base interApp url string
     static private var baseUrlString: String {
         var url = schemeURL
@@ -100,14 +102,24 @@ struct Constants {
             baseUrlString
     }
 
-    // Construct end batch interApp url string
-    static var printerSettingsUrlString: String {
+    // Construct set printer settings url string
+    static var setPrintingSettingsUrlString: String {
         return UserDefaults.standard.value(forKey:
                 SettingsViewController.SettingsKeys.sendEmptyAction.rawValue)
         as? Bool != true ?
-        baseUrlString + printerSettingsAction:
+        baseUrlString + setPrintingSettingsAction:
             baseUrlString
     }
+    
+    // Construct get printer settings url string
+    static var getPrintingSettingsUrlString: String {
+        return UserDefaults.standard.value(forKey:
+                SettingsViewController.SettingsKeys.sendEmptyAction.rawValue)
+        as? Bool != true ?
+        baseUrlString + getPrintingSettingsAction:
+            baseUrlString
+    }
+
     
     static var sendLogsUrlString: String {
         return baseUrlString + sendLogsAction

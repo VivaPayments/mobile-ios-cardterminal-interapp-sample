@@ -18,7 +18,7 @@ struct ActivationPOSView: View {
             Text("Activate POS APP via an intent")
             Form {
                 credentialsSection
-
+                optionalParamsSection
                 testCasesSection
                 currentRequestToSentSection
             }.toolbar {
@@ -31,15 +31,33 @@ struct ActivationPOSView: View {
 
     }
 
+    var optionalParamsSection: some View {
+        Section(header: Text("Optional parameters")) {
+            TextField("Enter PinCode", text: $viewModel.pinCode)
+            TextField("Enter SourceID", text: $viewModel.sourceId)
+            
+            Picker("Activate Moto", selection: $viewModel.selectedMotoPickerValue) {
+                ForEach(viewModel.optionsForPicker, id: \.self) {
+                    Text($0)
+                }
+            }
+            
+            Picker("Activate QR Codes", selection: $viewModel.selectedQRCodesPickerValue) {
+                ForEach(viewModel.optionsForPicker, id: \.self) {
+                    Text($0)
+                }
+            }
+
+        }
+    }
+   
     var credentialsSection: some View {
         Section(header: Text("Credentials")) {
             TextField("Enter ApiKey", text: $viewModel.apikey)
             TextField("Enter ApiSecret", text: $viewModel.apiSecret)
-            TextField("Enter SourceID", text: $viewModel.sourceId)
-            TextField("Enter PinCode", text: $viewModel.pinCode)
         }
     }
-    
+
     var testCasesSection: some View {
         Section(header: Text("Test cases")) {
             Toggle("Send empty pincode", isOn: $viewModel.sendEmptyPinCode)
@@ -68,7 +86,7 @@ struct ActivationPOSView: View {
                         Text("Copy to clipboard")
                         Image(systemName: "doc.on.doc")
                     }
-                 }
+                }
         }
     }
 
