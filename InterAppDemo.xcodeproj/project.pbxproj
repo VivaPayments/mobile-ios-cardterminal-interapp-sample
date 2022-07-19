@@ -13,6 +13,9 @@
 		15A8BBFA23A8E54C000B2731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15A8BBF923A8E54C000B2731 /* Assets.xcassets */; };
 		15A8BC0023A8E54C000B2731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A8BBFE23A8E54C000B2731 /* LaunchScreen.storyboard */; };
 		15A8BC0823A8E76E000B2731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A8BC0723A8E76E000B2731 /* Main.storyboard */; };
+		233D37DB2858BA0600390280 /* ReprintTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D37DA2858BA0600390280 /* ReprintTransactionViewController.swift */; };
+		233D37DE2858BA3300390280 /* ReprintTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D37DD2858BA3300390280 /* ReprintTransactionView.swift */; };
+		233D37E02858BA6800390280 /* ReprintTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D37DF2858BA6800390280 /* ReprintTransactionViewModel.swift */; };
 		234449A527DBA7DC00660FA4 /* ActivationPOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234449A427DBA7DC00660FA4 /* ActivationPOSViewController.swift */; };
 		234449A827DBA8AF00660FA4 /* ActivationPOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234449A727DBA8AF00660FA4 /* ActivationPOSView.swift */; };
 		234449AA27DBA96300660FA4 /* VCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234449A927DBA96300660FA4 /* VCExtension.swift */; };
@@ -44,6 +47,9 @@
 		15A8BC0123A8E54C000B2731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15A8BC0723A8E76E000B2731 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		185268231DD594C7FDEDBDE6 /* Pods-InterAppDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterAppDemo.release.xcconfig"; path = "Target Support Files/Pods-InterAppDemo/Pods-InterAppDemo.release.xcconfig"; sourceTree = "<group>"; };
+		233D37DA2858BA0600390280 /* ReprintTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReprintTransactionViewController.swift; sourceTree = "<group>"; };
+		233D37DD2858BA3300390280 /* ReprintTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReprintTransactionView.swift; sourceTree = "<group>"; };
+		233D37DF2858BA6800390280 /* ReprintTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReprintTransactionViewModel.swift; sourceTree = "<group>"; };
 		234449A427DBA7DC00660FA4 /* ActivationPOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationPOSViewController.swift; sourceTree = "<group>"; };
 		234449A727DBA8AF00660FA4 /* ActivationPOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationPOSView.swift; sourceTree = "<group>"; };
 		234449A927DBA96300660FA4 /* VCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCExtension.swift; sourceTree = "<group>"; };
@@ -125,6 +131,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		233D37DC2858BA1300390280 /* ReprintTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				233D37DA2858BA0600390280 /* ReprintTransactionViewController.swift */,
+				233D37DD2858BA3300390280 /* ReprintTransactionView.swift */,
+				233D37DF2858BA6800390280 /* ReprintTransactionViewModel.swift */,
+			);
+			path = ReprintTransaction;
+			sourceTree = "<group>";
+		};
 		234449A627DBA89400660FA4 /* Activation POS */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +205,7 @@
 		B1BE132A24080FA30072ADE7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				233D37DC2858BA1300390280 /* ReprintTransaction */,
 				23F125C227F73B950094876E /* CustomRequest */,
 				234449A627DBA89400660FA4 /* Activation POS */,
 				15A8BC0723A8E76E000B2731 /* Main.storyboard */,
@@ -314,14 +331,17 @@
 				236D975827DF9D2A0023C83F /* ActivationPOSViewModel.swift in Sources */,
 				B1BE1326240806DC0072ADE7 /* DetailsViewController.swift in Sources */,
 				B17C9A9D25ED2957007BB13F /* BatchManagementViewController.swift in Sources */,
+				233D37DE2858BA3300390280 /* ReprintTransactionView.swift in Sources */,
 				234449A827DBA8AF00660FA4 /* ActivationPOSView.swift in Sources */,
 				B1482D89246D67F6003CF76E /* InterAppTabViewController.swift in Sources */,
 				23F125C427F73BBE0094876E /* CustomRequestView.swift in Sources */,
 				B112EACD2407C73B0064BFF0 /* InterAppResponse.swift in Sources */,
+				233D37DB2858BA0600390280 /* ReprintTransactionViewController.swift in Sources */,
 				234449A527DBA7DC00660FA4 /* ActivationPOSViewController.swift in Sources */,
 				B1CE04C02600D88100D3CB6C /* ReceiptOptionsViewController.swift in Sources */,
 				236D975627DF9D050023C83F /* ViewExtension.swift in Sources */,
 				B1BE13242407ED950072ADE7 /* ReceiptViewModel.swift in Sources */,
+				233D37E02858BA6800390280 /* ReprintTransactionViewModel.swift in Sources */,
 				B17C9AA125ED2C49007BB13F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,7 +394,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 150;
+				CURRENT_PROJECT_VERSION = 160;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -393,7 +413,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = 1.13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -437,7 +457,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 150;
+				CURRENT_PROJECT_VERSION = 160;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -450,7 +470,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = 1.13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

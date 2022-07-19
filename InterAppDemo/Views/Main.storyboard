@@ -521,11 +521,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <tabBarAppearance key="scrollEdgeAppearance"/>
                     </tabBar>
                     <connections>
                         <segue destination="nBk-TT-iRI" kind="relationship" relationship="viewControllers" id="RyZ-83-mN6"/>
-                        <segue destination="KXA-c0-BaY" kind="relationship" relationship="viewControllers" id="QWT-aB-GVI"/>
                         <segue destination="eC9-tk-TYa" kind="relationship" relationship="viewControllers" id="Ggw-b7-ZyA"/>
+                        <segue destination="KXA-c0-BaY" kind="relationship" relationship="viewControllers" id="QWT-aB-GVI"/>
+                        <segue destination="qPg-vo-j2o" kind="relationship" relationship="viewControllers" id="D8L-HP-YwC"/>
                         <segue destination="jsl-ik-whW" kind="relationship" relationship="viewControllers" id="OWp-aX-j6c"/>
                     </connections>
                 </tabBarController>
@@ -758,6 +760,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aA1-wc-Sfx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1149" y="638"/>
+        </scene>
+        <!--Reprint-->
+        <scene sceneID="vOt-nZ-pJd">
+            <objects>
+                <viewController storyboardIdentifier="ReprintTransactionViewController" id="qPg-vo-j2o" customClass="ReprintTransactionViewController" customModule="InterAppDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="33j-vT-FV4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Fvv-hG-wlU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Reprint" image="printer" catalog="system" id="FlH-zB-zQm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ae4-gm-HkG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2501" y="951"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="PZL-WK-eTT">
@@ -992,6 +1010,7 @@
         <image name="line.horizontal.3.decrease.circle" catalog="system" width="128" height="121"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="point.3.connected.trianglepath.dotted" catalog="system" width="128" height="96"/>
+        <image name="printer" catalog="system" width="128" height="111"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <image name="xmark.circle" catalog="system" width="128" height="121"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>

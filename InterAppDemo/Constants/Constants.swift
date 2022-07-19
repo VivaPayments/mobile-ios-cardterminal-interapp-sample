@@ -22,7 +22,10 @@ struct Constants {
     private static let setPrintingSettingsAction =  "&action=set_printing_settings" // Set printing settings
     private static let getPrintingSettingsAction =  "&action=getPrintingSettings" // Get printing settings
     private static let sendLogsAction = "&action=sendLogs"
-    
+
+    private static let reprintTransactionAction = "&action=reprintTransaction"
+
+
     // Construct base interApp url string
     static private var baseUrlString: String {
         var url = schemeURL
@@ -38,6 +41,14 @@ struct Constants {
             url += clientAppID
         }
         return url
+    }
+    
+    static var reprintTransacionUrlString: String {
+        return UserDefaults.standard.value(forKey:
+                SettingsViewController.SettingsKeys.sendEmptyAction.rawValue)
+        as? Bool != true ?
+        baseUrlString + reprintTransactionAction:
+            baseUrlString
     }
     
     static private var activationBaseUrlString: String {
