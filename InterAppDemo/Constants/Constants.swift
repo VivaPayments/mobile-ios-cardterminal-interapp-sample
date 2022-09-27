@@ -16,6 +16,7 @@ struct Constants {
     private static let clientAppID = "&appId=com.vivawallet.InterAppDemo" // The client app id.
     private static let saleAction = "&action=sale" // Sale transaction
     private static let activateAction = "&action=activatePos"
+    private static let getActivationCodeAction = "&action=getActivationCode"
     private static let cancelAction = "&action=cancel" // Cancel/Refund transaction
     private static let abortAction =  "&action=abort" // Abort transaction
     private static let batchAction =  "&action=batch" // Create batch
@@ -66,7 +67,7 @@ struct Constants {
         return url
     }
 
-    // Construct activate interApp url string
+    // Construct sale interApp url string
     static var saleUrlString: String {
         return UserDefaults.standard.value(forKey:
                 SettingsViewController.SettingsKeys.sendEmptyAction.rawValue)
@@ -76,14 +77,22 @@ struct Constants {
 
     }
     
-    // Construct sale interApp url string
+    // Construct activate interApp url string
     static var activateUrlString: String {
         return UserDefaults.standard.value(forKey:
                 SettingsViewController.SettingsKeys.sendEmptyAction.rawValue)
         as? Bool != true ?
         activationBaseUrlString + activateAction:
         activationBaseUrlString
-
+    }
+    
+    // Construct activate interApp url string
+    static var getActivationCodeUrlString: String {
+        return UserDefaults.standard.value(forKey:
+                SettingsViewController.SettingsKeys.sendEmptyAction.rawValue)
+        as? Bool != true ?
+        activationBaseUrlString + getActivationCodeAction:
+        activationBaseUrlString
     }
 
     // Construct cancel interApp url string

@@ -18,13 +18,13 @@ struct ActivationPOSView: View {
             Text("Activate POS APP via an intent")
             Form {
                 credentialsSection
+                activationCodeSection
                 optionalParamsSection
-                testCasesSection
                 currentRequestToSentSection
             }.toolbar {
                 toolBarContent()
             }
-
+            getActivationCode
             activateButton
 
         }
@@ -33,16 +33,54 @@ struct ActivationPOSView: View {
 
     var optionalParamsSection: some View {
         Section(header: Text("Optional parameters")) {
-            TextField("Enter PinCode", text: $viewModel.pinCode)
             TextField("Enter SourceID", text: $viewModel.sourceId)
-            
+
             Picker("Activate Moto", selection: $viewModel.selectedMotoPickerValue) {
                 ForEach(viewModel.optionsForPicker, id: \.self) {
                     Text($0)
                 }
             }
-            
+
             Picker("Activate QR Codes", selection: $viewModel.selectedQRCodesPickerValue) {
+                ForEach(viewModel.optionsForPicker, id: \.self) {
+                    Text($0)
+                }
+            }
+            Picker(
+                "Disable Manual Amount Entry",
+                selection: $viewModel.selectedDisableManualAmountEntryPickerValue
+            ) {
+                ForEach(viewModel.optionsForPicker, id: \.self) {
+                    Text($0)
+                }
+            }
+            Picker(
+                "Force card presentment for refunds",
+                selection: $viewModel.forceCardPresentmentForRefundPickerValue
+            ) {
+                ForEach(viewModel.optionsForPicker, id: \.self) {
+                    Text($0)
+                }
+            }
+            TextField("Enter PinCode", text: $viewModel.pinCode)
+            Picker("Lock Refund", selection: $viewModel.lockRefundPickerValue) {
+                ForEach(viewModel.optionsForPicker, id: \.self) {
+                    Text($0)
+                }
+            }
+            Picker("Lock Transactions List", selection: $viewModel.lockTransactionsListPickerValue)
+            {
+                ForEach(viewModel.optionsForPicker, id: \.self) {
+                    Text($0)
+                }
+            }
+
+            Picker("Lock Moto", selection: $viewModel.lockMotoPickerValue) {
+                ForEach(viewModel.optionsForPicker, id: \.self) {
+                    Text($0)
+                }
+            }
+            Picker("Lock Preauth", selection: $viewModel.lockPreauthPickerValue) {
                 ForEach(viewModel.optionsForPicker, id: \.self) {
                     Text($0)
                 }
@@ -50,22 +88,20 @@ struct ActivationPOSView: View {
 
         }
     }
-   
+
     var credentialsSection: some View {
-        Section(header: Text("Credentials")) {
+        Section(header: Text("Activate with credentials")) {
             TextField("Enter ApiKey", text: $viewModel.apikey)
             TextField("Enter ApiSecret", text: $viewModel.apiSecret)
         }
     }
 
-    var testCasesSection: some View {
-        Section(header: Text("Test cases")) {
-            Toggle("Send empty pincode", isOn: $viewModel.sendEmptyPinCode)
-            Toggle("Send without apikey", isOn: $viewModel.sendWithoutApiKey)
-            Toggle("Send without apiSecret", isOn: $viewModel.sendWithoutApiSecret)
-
+    var activationCodeSection: some View {
+        Section(header: Text("Activate with activation code")) {
+            TextField("Enter Activation Code", text: $viewModel.activationCode)
         }
     }
+
     var setupSection: some View {
         Section(header: Text("Set up parameters")) {
             Toggle("Activate MOTO", isOn: $viewModel.activateMoto)
@@ -86,7 +122,7 @@ struct ActivationPOSView: View {
                         Text("Copy to clipboard")
                         Image(systemName: "doc.on.doc")
                     }
-                }
+                }  .fixedSize(horizontal: false, vertical: true)
         }
     }
 
@@ -95,6 +131,13 @@ struct ActivationPOSView: View {
             viewModel.activate()
         }) {
             Text("Activate POS App").frame(minWidth: 0, maxWidth: .infinity)
+        }.buttonStyle(PrimaryButtonStyle()).padding()
+    }
+    var getActivationCode: some View {
+        Button(action: {
+            viewModel.getActivationCode()
+        }) {
+            Text("Get Activation Code").frame(minWidth: 0, maxWidth: .infinity)
         }.buttonStyle(PrimaryButtonStyle()).padding()
     }
 
