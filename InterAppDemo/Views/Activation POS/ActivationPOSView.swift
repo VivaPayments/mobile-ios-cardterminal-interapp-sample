@@ -63,26 +63,39 @@ struct ActivationPOSView: View {
                 }
             }
             TextField("Enter PinCode", text: $viewModel.pinCode)
-            Picker("Lock Refund", selection: $viewModel.lockRefundPickerValue) {
-                ForEach(viewModel.optionsForPicker, id: \.self) {
-                    Text($0)
+            Group {
+                
+                Picker("Lock Refund", selection: $viewModel.lockRefundPickerValue) {
+                    ForEach(viewModel.optionsForPicker, id: \.self) {
+                        Text($0)
+                    }
                 }
-            }
-            Picker("Lock Transactions List", selection: $viewModel.lockTransactionsListPickerValue)
-            {
-                ForEach(viewModel.optionsForPicker, id: \.self) {
-                    Text($0)
+                
+                Picker(
+                    "Lock Transactions List",
+                    selection: $viewModel.lockTransactionsListPickerValue
+                ) {
+                    ForEach(viewModel.optionsForPicker, id: \.self) {
+                        Text($0)
+                    }
                 }
-            }
 
-            Picker("Lock Moto", selection: $viewModel.lockMotoPickerValue) {
-                ForEach(viewModel.optionsForPicker, id: \.self) {
-                    Text($0)
+                Picker("Lock Moto", selection: $viewModel.lockMotoPickerValue) {
+                    ForEach(viewModel.optionsForPicker, id: \.self) {
+                        Text($0)
+                    }
                 }
-            }
-            Picker("Lock Preauth", selection: $viewModel.lockPreauthPickerValue) {
-                ForEach(viewModel.optionsForPicker, id: \.self) {
-                    Text($0)
+
+                Picker("Lock Preauth", selection: $viewModel.lockPreauthPickerValue) {
+                    ForEach(viewModel.optionsForPicker, id: \.self) {
+                        Text($0)
+                    }
+                }
+
+                Picker("Lock Capture", selection: $viewModel.lockCapturePickerValue) {
+                    ForEach(viewModel.optionsForPicker, id: \.self) {
+                        Text($0)
+                    }
                 }
             }
 
@@ -122,7 +135,7 @@ struct ActivationPOSView: View {
                         Text("Copy to clipboard")
                         Image(systemName: "doc.on.doc")
                     }
-                }  .fixedSize(horizontal: false, vertical: true)
+                }.fixedSize(horizontal: false, vertical: true)
         }
     }
 

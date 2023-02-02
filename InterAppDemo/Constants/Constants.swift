@@ -15,9 +15,11 @@ struct Constants {
     private static let merchantKey = "&merchantKey=SG23323424EXS3" // The merchant's key.
     private static let clientAppID = "&appId=com.vivawallet.InterAppDemo" // The client app id.
     private static let saleAction = "&action=sale" // Sale transaction
+    private static let preauthAction = "&action=pre_auth" // Sale transaction
     private static let activateAction = "&action=activatePos"
     private static let getActivationCodeAction = "&action=getActivationCode"
     private static let cancelAction = "&action=cancel" // Cancel/Refund transaction
+    private static let capturePreauthAction = "&action=capture_pre_auth" // Cancel/Refund transaction
     private static let abortAction =  "&action=abort" // Abort transaction
     private static let batchAction =  "&action=batch" // Create batch
     private static let setPrintingSettingsAction =  "&action=set_printing_settings" // Set printing settings
@@ -77,6 +79,16 @@ struct Constants {
 
     }
     
+    // Construct preauth interApp url string
+    static var preauthUrlString: String {
+        return UserDefaults.standard.value(forKey:
+                SettingsViewController.SettingsKeys.sendEmptyAction.rawValue)
+        as? Bool != true ?
+        baseUrlString + preauthAction:
+            baseUrlString
+
+    }
+    
     // Construct activate interApp url string
     static var activateUrlString: String {
         return UserDefaults.standard.value(forKey:
@@ -101,6 +113,14 @@ struct Constants {
                 SettingsViewController.SettingsKeys.sendEmptyAction.rawValue)
         as? Bool != true ?
         baseUrlString + cancelAction:
+            baseUrlString
+    }
+    
+    static var capturePreauthlUrlString: String {
+        return UserDefaults.standard.value(forKey:
+                SettingsViewController.SettingsKeys.sendEmptyAction.rawValue)
+        as? Bool != true ?
+        baseUrlString + capturePreauthAction:
             baseUrlString
     }
 

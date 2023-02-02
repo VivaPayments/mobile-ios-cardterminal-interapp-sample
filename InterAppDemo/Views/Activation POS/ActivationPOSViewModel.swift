@@ -22,6 +22,7 @@ class ActivationPOSViewModel: ObservableObject {
     @Published var lockTransactionsListPickerValue = "-"
     @Published var lockMotoPickerValue = "-"
     @Published var lockPreauthPickerValue = "-"
+    @Published var lockCapturePickerValue = "-"
 
     @Published var selectedMotoPickerValue = "-"
     @Published var selectedQRCodesPickerValue = "-"
@@ -82,6 +83,11 @@ class ActivationPOSViewModel: ObservableObject {
         if lockPreauthPickerValue != "-" {
             activateActionURL += "&lockPreauth=\(lockPreauthPickerValue)"
         }
+        
+        if lockCapturePickerValue != "-" {
+            activateActionURL += "&lockCapture=\(lockCapturePickerValue)"
+        }
+        
         if forceCardPresentmentForRefundPickerValue != "-" {
             activateActionURL += "&forceCardPresentmentForRefund=\(forceCardPresentmentForRefundPickerValue)"
         }
