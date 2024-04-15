@@ -8,23 +8,55 @@
 import Foundation
 
 extension String {
-    func toDate(withFormat f: String = "yyyy-MM-dd'T'HH:mm:ss'Z'", timeZone: TimeZone? = nil) -> Date? {
+    func toDate(
+        withFormat f: String = "yyyy-MM-dd'T'HH:mm:ss'Z'",
+        timeZone: TimeZone? = nil
+    ) -> Date? {
         let df = DateFormatter()
         df.dateFormat = f
         df.locale = Locale(identifier: "en_US_POSIX")
         df.timeZone = timeZone == nil ? TimeZone(abbreviation: "UTC") : timeZone
         return df.date(from: self)
     }
-    
+
     var isAlphaNumeric: Bool {
         let regex = "^[a-zA-Z0-9]*$"
-        let inputP = NSPredicate(format:"SELF MATCHES %@", regex)
+        let inputP = NSPredicate(format: "SELF MATCHES %@", regex)
         return inputP.evaluate(with: self)
     }
+    
+    var toInt: Int? {
+        return Int(self) ?? nil
+    }
+    
+    
+    func convertToDictionary() -> [String: Any]? {
+        if let data = self.data(using: .utf8) {
+            do {
+                let json = try JSONSerialization.jsonObject(
+                    with: data,
+                    options: .mutableContainers
+                ) as? [String:AnyObject]
+                return json
+            } catch {
+                print("Something went wrong")
+            }
+        }
+        return nil
+    }
+    
 }
 
-public extension Date {
-    func toString(withFormat f: String = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timeZone: TimeZone? = nil, calendar: Calendar? = nil) -> String {
+extension String: LocalizedError {
+    public var errorDescription: String? { return self }
+}
+
+extension Date {
+    public func toString(
+        withFormat f: String = "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
+        timeZone: TimeZone? = nil,
+        calendar: Calendar? = nil
+    ) -> String {
         let df = DateFormatter()
         df.dateFormat = f
         df.locale = Locale(identifier: "en_US_POSIX")
@@ -36,18 +68,19 @@ public extension Date {
 
 extension URL {
     func toStringDictionary() -> [String: String]? {
-        guard let query = self.query else { return nil}
-        
+        guard let query = self.query else { return nil }
+
         var queryStrings = [String: String]()
         for pair in query.components(separatedBy: "&") {
-            
+
             let key = pair.components(separatedBy: "=")[0]
-            
-            let value = pair
-                .components(separatedBy:"=")[1]
+
+            let value =
+                pair
+                .components(separatedBy: "=")[1]
                 .replacingOccurrences(of: "+", with: " ")
                 .removingPercentEncoding ?? ""
-            
+
             queryStrings[key] = value.removingPercentEncoding
         }
         return queryStrings
@@ -66,3 +99,19 @@ extension Decimal {
         return currencyFormatter.string(from: self as NSNumber)!
     }
 }
+
+extension Dictionary {
+    
+    var jsonRepresantation: String {
+        let encoder = JSONEncoder()
+        if let jsonData = try? JSONSerialization.data(
+            withJSONObject: self,
+            options: [.prettyPrinted]
+        ) {
+            return String(data: jsonData, encoding: .utf8) ?? ""
+        }
+        return ""
+    }
+    
+}
+

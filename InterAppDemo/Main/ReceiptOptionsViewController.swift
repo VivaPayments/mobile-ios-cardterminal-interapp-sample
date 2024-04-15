@@ -48,7 +48,7 @@ class ReceiptOptionsViewController: UIViewController {
     @IBAction func applySettingsButtonTapped(_ sender: Any) {
         var printerSettingsURL = Constants.setPrintingSettingsUrlString
         printerSettingsDictionary.forEach { (setting) in
-            printerSettingsURL += "&" +  setting.key + "=" + setting.value
+            printerSettingsURL += "&" + setting.key + "=" + setting.value
         }
         (UIApplication.shared.delegate as? AppDelegate)?.performInterAppRequest(request: printerSettingsURL)
     }
@@ -110,12 +110,17 @@ extension ReceiptOptionsViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         guard indexPath.row != 0 else { return nil }
-        if indexPath.row > 0 && indexPath.row <= 3 {
-            tableView.deselectRow(at: IndexPath.init(item: 1, section: 0), animated: false)
-            tableView.deselectRow(at: IndexPath.init(item: 2, section: 0), animated: false)
-            tableView.deselectRow(at: IndexPath.init(item: 3, section: 0), animated: false)
-            tableView.reloadRows(at: [IndexPath.init(item: 1, section: 0),IndexPath.init(item: 2, section: 0),IndexPath.init(item: 3, section: 0)], with: .none)
+        guard indexPath.row <= 3 else { return indexPath }
+
+        var reloadList = [1, 2, 3]
+        
+        reloadList.remove(at: indexPath.row - 1)
+        
+        for i in reloadList {
+            tableView.deselectRow(at: IndexPath.init(item: i, section: 0), animated: false)
+            tableView.reloadRows(at: [IndexPath.init(item: i, section: 0)], with: .none)
         }
+
         return indexPath
     }
     
